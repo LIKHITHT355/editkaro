@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Editkaro.in — Social Media Marketing & Video Editing Agency</title>
+  <meta name="description" content="Editkaro.in is a social media marketing and video editing agency specializing in short-form, ads, gaming, football, ecommerce, documentary style, color grading, anime edits, and more." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/edit/style.css" />
+</head>
+<body>
+  <header class="nav">
+    <div class="container nav-inner">
+      <a href="#" class="brand" aria-label="Editkaro Home">
+        <span class="brand-mark">EK</span>
+        <span class="brand-text">Editkaro.in</span>
+      </a>
+      <nav class="menu">
+        <a href="#about" class="menu-link">About</a>
+        <a href="#portfolio" class="menu-link">Portfolio</a>
+        <a href="#contact" class="menu-link">Contact</a>
+        <button id="themeToggle" class="btn btn-ghost" aria-label="Toggle theme">🌓</button>
+      </nav>
+    </div>
+  </header>
+
+  <section class="hero" id="home" aria-label="Hero">
+    <div class="hero-bg">
+      <div class="gradient"></div>
+      <canvas id="orbital" aria-hidden="true"></canvas>
+    </div>
+    <div class="container hero-inner">
+      <h1 class="hero-title">Editkaro.in</h1>
+      <p class="hero-tagline">Social Media Marketing & Video Editing Agency</p>
+      <div class="hero-ctas">
+        <a href="#portfolio" class="btn btn-primary">View Portfolio</a>
+        <a href="#contact" class="btn btn-outline">Contact Us</a>
+      </div>
+      <div class="hero-stats">
+        <div class="stat">
+          <span class="stat-num">500+</span>
+          <span class="stat-label">Videos Delivered</span>
+        </div>
+        <div class="stat">
+          <span class="stat-num">50M+</span>
+          <span class="stat-label">Views Generated</span>
+        </div>
+        <div class="stat">
+          <span class="stat-num">120+</span>
+          <span class="stat-label">Clients Served</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <main>
+    <section id="about" class="section about">
+      <div class="container grid-2">
+        <div class="about-media glass" data-animate="fade-up">
+          <img
+            src="https://images.unsplash.com/photo-1552581234-26160f608093?auto=format&fit=crop&w=1600&q=80"
+            alt="Creative video editors collaborating in a studio"
+            loading="lazy"
+          />
+        </div>
+        <div class="about-content" data-animate="fade-up">
+          <h2 class="section-title">About Editkaro</h2>
+          <p>
+            Editkaro.in crafts scroll-stopping videos and performance-driven social content that converts audiences into customers, blending editorial creativity with data-led distribution strategies.
+          </p>
+          <div class="about-cards">
+            <div class="card glass">
+              <div class="card-icon">✂️</div>
+              <h3>Video Editing</h3>
+              <p>Snappy short-form, cinematic long-form, and clean narrative structure tailored to your brand voice.</p>
+            </div>
+            <div class="card glass">
+              <div class="card-icon">🎯</div>
+              <h3>Ads Editing</h3>
+              <p>Direct-response edits, UGC-style ads, and platform-optimized deliverables for ROAS growth.</p>
+            </div>
+            <div class="card glass">
+              <div class="card-icon">📱</div>
+              <h3>Social Edits</h3>
+              <p>Reels, Shorts, TikToks with platform-native pacing, captions, sound design, and hooks.</p>
+            </div>
+            <div class="card glass">
+              <div class="card-icon">🎨</div>
+              <h3>Color Grading</h3>
+              <p>Film-emulation, LUT workflows, and calibrated grading for consistent visual identity.</p>
+            </div>
+          </div>
+
+          <div class="mv grid-2">
+            <div class="mv-item">
+              <h4>Mission</h4>
+              <p>Make content that captures attention fast, conveys value clearly, and compels action across platforms.</p>
+            </div>
+            <div class="mv-item">
+              <h4>Vision</h4>
+              <p>Be the go-to creative partner for brands and creators seeking measurable growth through video.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="portfolio" class="section portfolio">
+      <div class="container">
+        <h2 class="section-title">Portfolio</h2>
+
+        <div class="filters" role="tablist" aria-label="Portfolio filters">
+          <button class="filter-btn active" data-filter="all" role="tab" aria-selected="true">All</button>
+          <button class="filter-btn" data-filter="short">Short-form</button>
+          <button class="filter-btn" data-filter="long">Long-form</button>
+          <button class="filter-btn" data-filter="gaming">Gaming</button>
+          <button class="filter-btn" data-filter="football">Football</button>
+          <button class="filter-btn" data-filter="ecommerce">Ecommerce Ads</button>
+          <button class="filter-btn" data-filter="docu">Documentary</button>
+          <button class="filter-btn" data-filter="grading">Color Grading</button>
+          <button class="filter-btn" data-filter="anime">Anime</button>
+          <button class="filter-btn" data-filter="ads">Ads</button>
+        </div>
+
+        <div class="grid masonry" id="portfolioGrid">
+          <!-- Short-form -->
+          <article class="card video-card" data-category="short" data-animate="fade-up">
+            <div class="thumb">
+              <video muted loop preload="metadata" playsinline poster="https://images.unsplash.com/photo-1520975922284-9a4b4c2e2f58?auto=format&fit=crop&w=1200&q=80">
+                <source src="http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4" type="video/mp4" />
+              </video>
+              <span class="tag">Short-form</span>
+              <button class="play-btn" aria-label="Play Preview">▶</button>
+            </div>
+            <h3 class="video-title">Hook-Driven Product Teaser</h3>
+          </article>
+
+          <!-- Long-form -->
+          <article class="card video-card" data-category="long" data-animate="fade-up">
+            <div class="thumb">
+              <video muted loop preload="metadata" playsinline poster="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=1200&q=80">
+                <source src="http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/WhatCarCanYouGetForAGrand.mp4" type="video/mp4" />
+              </video>
+              <span class="tag">Long-form</span>
+              <button class="play-btn" aria-label="Play Preview">▶</button>
+            </div>
+            <h3 class="video-title">Founder Story Documentary</h3>
+          </article>
+
+          <!-- Gaming -->
+          <article class="card video-card" data-category="gaming" data-animate="fade-up">
+            <div class="thumb">
+              <video muted loop preload="metadata" playsinline poster="https://images.unsplash.com/photo-1542751110-97427bbecf20?auto=format&fit=crop&w=1200&q=80">
+                <source src="http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/VolkswagenGTIReview.mp4" type="video/mp4" />
+              </video>
+              <span class="tag">Gaming</span>
+              <button class="play-btn" aria-label="Play Preview">▶</button>
+            </div>
+            <h3 class="video-title">Montage Highlights Edit</h3>
+          </article>
+
+          <!-- Football -->
+          <article class="card video-card" data-category="football" data-animate="fade-up">
+            <div class="thumb">
+              <video muted loop preload="metadata" playsinline poster="https://images.unsplash.com/photo-1486286701208-1d58e9338013?auto=format&fit=crop&w=1200&q=80">
+                <source src="http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4" type="video/mp4" />
+              </video>
+              <span class="tag">Football</span>
+              <button class="play-btn" aria-label="Play Preview">▶</button>
+            </div>
+            <h3 class="video-title">Matchday Aftermovie</h3>
+          </article>
+
+          <!-- Ecommerce ads -->
+          <article class="card video-card" data-category="ecommerce" data-animate="fade-up">
+            <div class="thumb">
+              <video muted loop preload="metadata" playsinline poster="https://images.unsplash.com/photo-1542831371-29b0f74f9713?auto=format&fit=crop&w=1200&q=80">
+                <source src="http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4" type="video/mp4" />
+              </video>
+              <span class="tag">Ecommerce Ads</span>
+              <button class="play-btn" aria-label="Play Preview">▶</button>
+            </div>
+            <h3 class="video-title">DTC Product Explainer</h3>
+          </article>
+
+          <!-- Documentary style -->
+          <article class="card video-card" data-category="docu" data-animate="fade-up">
+            <div class="thumb">
+              <video muted loop preload="metadata" playsinline poster="https://images.unsplash.com/photo-1466854076813-4aa9ac0fc347?auto=format&fit=crop&w=1200&q=80">
+                <source src="http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerFun.mp4" type="video/mp4" />
+              </video>
+              <span class="tag">Documentary</span>
+              <button class="play-btn" aria-label="Play Preview">▶</button>
+            </div>
+            <h3 class="video-title">Micro-Doc Series Episode</h3>
+          </article>
+
+          <!-- Color grading -->
+          <article class="card video-card" data-category="grading" data-animate="fade-up">
+            <div class="thumb">
+              <video muted loop preload="metadata" playsinline poster="https://images.unsplash.com/photo-1497215842964-222b430dc094?auto=format&fit=crop&w=1200&q=80">
+                <source src="http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoyrides.mp4" type="video/mp4" />
+              </video>
+              <span class="tag">Color Grading</span>
+              <button class="play-btn" aria-label="Play Preview">▶</button>
+            </div>
+            <h3 class="video-title">Commercial Grade Pass</h3>
+          </article>
+
+          <!-- Anime edits -->
+          <article class="card video-card" data-category="anime" data-animate="fade-up">
+            <div class="thumb">
+              <video muted loop preload="metadata" playsinline poster="https://images.unsplash.com/photo-1590602847861-f357a9332bbc?auto=format&fit=crop&w=1200&q=80">
+                <source src="http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerMeltdowns.mp4" type="video/mp4" />
+              </video>
+              <span class="tag">Anime</span>
+              <button class="play-btn" aria-label="Play Preview">▶</button>
+            </div>
+            <h3 class="video-title">AMV Transition Mix</h3>
+          </article>
+
+          <!-- Ads (General) -->
+          <article class="card video-card" data-category="ads" data-animate="fade-up">
+            <div class="thumb">
+              <video muted loop preload="metadata" playsinline poster="https://images.unsplash.com/photo-1551292831-023188e78222?auto=format&fit=crop&w=1200&q=80">
+                <source src="http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/Sintel.mp4" type="video/mp4" />
+              </video>
+              <span class="tag">Ads</span>
+              <button class="play-btn" aria-label="Play Preview">▶</button>
+            </div>
+            <h3 class="video-title">UGC Ad with Captions</h3>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" class="section contact">
+      <div class="container grid-2">
+        <div data-animate="fade-up">
+          <h2 class="section-title">Contact</h2>
+          <p>Have a project in mind? Share details and get a tailored proposal within 24 hours.</p>
+          <ul class="contact-list">
+            <li><span>📧</span> editkaroofficial@gmail.com</li>
+            <li><span>🟢</span> <a class="link" href="https://wa.me/919999999999" target="_blank" rel="noopener">WhatsApp Chat</a></li>
+            <li><span>🔗</span> <a class="link" href="#" target="_blank" rel="noopener">Instagram</a></li>
+            <li><span>🔗</span> <a class="link" href="#" target="_blank" rel="noopener">YouTube</a></li>
+          </ul>
+        </div>
+
+        <form id="contactForm" class="form glass" novalidate data-animate="fade-up">
+          <div class="form-row">
+            <label for="name">Name</label>
+            <input id="name" name="name" type="text" placeholder="Your name" required />
+            <small class="error" data-for="name"></small>
+          </div>
+          <div class="form-row">
+            <label for="email">Email</label>
+            <input id="email" name="email" type="email" placeholder="your@email.com" required />
+            <small class="error" data-for="email"></small>
+          </div>
+          <div class="form-row">
+            <label for="message">Message</label>
+            <textarea id="message" name="message" rows="5" placeholder="Tell us about your project..." required></textarea>
+            <small class="error" data-for="message"></small>
+          </div>
+          <div class="form-actions">
+            <button type="submit" class="btn btn-primary">Send Message</button>
+            <a href="https://wa.me/919999999999" class="btn btn-outline" target="_blank" rel="noopener">WhatsApp</a>
+          </div>
+          <p class="form-note">This form is a front-end demo. Connect to a backend or service (e.g., Formspree, Netlify Forms) for production.</p>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-inner">
+      <p>© <span id="year"></span> Editkaro.in. All rights reserved.</p>
+      <p>Website by @YourName</p>
+    </div>
+  </footer>
+
+  <!-- Lightbox Modal -->
+  <div class="modal" id="lightbox" aria-hidden="true" role="dialog" aria-modal="true">
+    <div class="modal-backdrop" data-close="lightbox"></div>
+    <div class="modal-dialog glass">
+      <button class="modal-close" data-close="lightbox" aria-label="Close">✕</button>
+      <div class="modal-body">
+        <video id="lightboxVideo" controls playsinline></video>
+      </div>
+    </div>
+  </div>
+
+  <script src="/edit/script.js"></script>
+</body>
+</html>
