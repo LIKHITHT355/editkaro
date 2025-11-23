@@ -252,6 +252,57 @@ a { text-decoration: none; color: inherit; }
   display: grid;
   grid-template-columns: 1.1fr 1fr;
   gap: 28px;
+  align-items: start; /* Align items to top to avoid gaps */
+}
+
+/* Fix gap below multiple images in about-media */
+.about .about-media img {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  margin-bottom: 0; /* Remove default margin below images */
+}
+
+/* Add gap between multiple images in about-media */
+.about .about-media img + img {
+  margin-top: 14px;
+}
+
+/* Video card styles adjustments for perfect alignment */
+.masonry {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+  /* Additional rule to align items */
+  align-items: start;
+}
+
+@media (max-width: 1000px) { 
+  .masonry { 
+    grid-template-columns: repeat(2, 1fr);
+  } 
+}
+@media (max-width: 620px) { 
+  .masonry { 
+    grid-template-columns: 1fr; 
+  } 
+}
+
+/* Set fixed aspect ratio for video thumbnails for consistent height */
+.video-card .thumb video {
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  border-radius: 14px;
+  background: #000;
+  width: 100%;
+  height: auto;
+}
+
+/* Remove hover scale transform to maintain alignment */
+.video-card .thumb:hover video {
+  transform: none;
+  transition: none;
 }
 
 @media (max-width: 900px) {

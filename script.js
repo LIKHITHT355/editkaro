@@ -152,14 +152,32 @@ window.addEventListener('keydown', (e) => {
   if (e.key === 'Escape') closeLightbox();
 });
 
-// -- Card interactions: hover play, hover out pause+reset, click toggle, play button opens lightbox --
+  
+
+// -- Card interactions: hover play, hover out pause+reset, click toggle play/stop, play button opens lightbox --
 // plus: if the card's video source errors, swap in a fallback and retry.
+
+let currentPlayingCard = null;
+let currentPlayingVideo = null;
+
 document.querySelectorAll('.video-card').forEach(card => {
   const video = card.querySelector('video');
   if (!video) return;
   const source = video.querySelector('source');
   const btn = card.querySelector('.play-btn');
   const category = card.dataset.category || 'generic';
+
+  // Track stopped state (separate from paused)
+  let isStopped = true;
+
+  // Helper to stop video
+  function stopVideo() {
+    try {
+      video.pause();
+      video.currentTime = 0;
+      isStopped = true;
+    } catch (e) {}
+  }
 
   // if source fails to load, swap to fallback and try again
   function onSourceError() {
@@ -173,7 +191,7 @@ document.querySelectorAll('.video-card').forEach(card => {
     try {
       video.load();
       // try autoplay (might be blocked)
-      video.play().catch(()=>{});
+      video.play().catch(() => {});
     } catch (err) {
       // ignore
     }
@@ -187,29 +205,64 @@ document.querySelectorAll('.video-card').forEach(card => {
     }
   });
 
-  // Hover behavior
+  // Hover behavior: play muted on hover if stopped and stop others
   card.addEventListener('mouseenter', () => {
     try {
-      video.muted = true;
-      video.play().catch(()=>{});
-    } catch (e) {}
-  });
-  card.addEventListener('mouseleave', () => {
-    try {
-      video.pause();
-      video.currentTime = 0;
+      if (isStopped) {
+        if (currentPlayingCard && currentPlayingCard !== card) {
+          currentPlayingVideo.pause();
+          currentPlayingVideo.currentTime = 0;
+          currentPlayingCard.dataset.stopped = 'true';
+        }
+        video.muted = true;
+        video.play().catch(() => {});
+        isStopped = false;
+        currentPlayingCard = card;
+        currentPlayingVideo = video;
+        card.dataset.stopped = 'false';
+      }
     } catch (e) {}
   });
 
-  // Click to toggle pause/play on the inline card
+  // Hover out: pause and reset if stopped (only if this is current playing)
+  card.addEventListener('mouseleave', () => {
+    try {
+      if (currentPlayingCard === card && !isStopped) {
+        video.pause();
+        video.currentTime = 0;
+        isStopped = true;
+        card.dataset.stopped = 'true';
+        currentPlayingCard = null;
+        currentPlayingVideo = null;
+      }
+    } catch (e) {}
+  });
+
+  // Click to toggle play/stop behavior (stop others)
   card.addEventListener('click', (e) => {
-    // if the click was on the explicit Play Preview button, ignore here
     if (e.target.closest('.play-btn')) return;
     try {
-      if (video.paused) {
-        video.play().catch(()=>{});
+      if (video.paused || isStopped) {
+        // stop previous video if any
+        if (currentPlayingCard && currentPlayingCard !== card) {
+          currentPlayingVideo.pause();
+          currentPlayingVideo.currentTime = 0;
+          currentPlayingCard.dataset.stopped = 'true';
+        }
+        // play this video
+        video.play().catch(() => {});
+        isStopped = false;
+        currentPlayingCard = card;
+        currentPlayingVideo = video;
+        card.dataset.stopped = 'false';
       } else {
+        // stop this video
         video.pause();
+        video.currentTime = 0;
+        isStopped = true;
+        card.dataset.stopped = 'true';
+        currentPlayingCard = null;
+        currentPlayingVideo = null;
       }
     } catch (err) {}
   });
@@ -217,12 +270,11 @@ document.querySelectorAll('.video-card').forEach(card => {
   // Open lightbox with explicit Play Preview button
   btn?.addEventListener('click', (ev) => {
     ev.stopPropagation();
-    // prefer the <source> src, otherwise the video's src attr
     const src = (source && source.getAttribute('src')) || video.getAttribute('src') || getFallback(category);
     openLightbox(src);
   });
 
-  // Accessibility: allow keyboard to trigger the play button
+  // Accessibility for keyboard interaction on play button
   btn?.addEventListener('keydown', (ev) => {
     if (ev.key === 'Enter' || ev.key === ' ') {
       ev.preventDefault();
